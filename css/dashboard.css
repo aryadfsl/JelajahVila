@@ -1,0 +1,296 @@
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #E8F5E8 0%, #B8E6B8 100%);
+  min-height: 100vh;
+  margin: 0;
+}
+
+.navbar {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  color: #2d3748 !important;
+  font-weight: 700;
+  font-size: 1.5rem;
+  background: linear-gradient(45deg, #20B2AA, #FF6347);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navbar .text-white {
+  color: #2d3748 !important;
+  font-weight: 500;
+}
+
+.btn-logout {
+  background: linear-gradient(45deg, #E63946, #F77F00);
+  border: none;
+  color: white;
+  font-weight: 500;
+  padding: 8px 20px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(230, 57, 70, 0.3);
+  color: white;
+}
+
+.btn-search {
+  background: linear-gradient(45deg, #FF6B35, #F7931E);
+  border: none;
+  color: white;
+  font-weight: 500;
+  padding: 8px 20px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.btn-search:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+}
+
+.page-title {
+  color: white;
+  font-weight: 700;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.action-buttons {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1.5rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.btn-gradient-primary {
+  background: linear-gradient(45deg, #20B2AA, #FF6347);
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-gradient-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(32, 178, 170, 0.3);
+  color: white;
+  text-decoration: none;
+}
+
+.btn-gradient-secondary {
+  background: linear-gradient(45deg, #FFE66D, #FF6B35);
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-gradient-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(255, 230, 109, 0.3);
+  color: white;
+  text-decoration: none;
+}
+
+.villa-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  border: none;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.villa-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+.villa-card img {
+  height: 220px;
+  object-fit: cover;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.villa-card:hover img {
+  transform: scale(1.1);
+}
+
+.favorite-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: linear-gradient(45deg, #FF6B35, #F7931E);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.villa-title {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.villa-location {
+  color: #718096;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+}
+
+.villa-price {
+  background: linear-gradient(45deg, #20B2AA, #FF6347);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.villa-stats {
+  background: linear-gradient(45deg, #FF6B35, #F7931E);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.btn-edit {
+  background: linear-gradient(45deg, #FFE66D, #FF6B35);
+  border: none;
+  color: white;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(255, 230, 109, 0.3);
+  color: white;
+}
+
+.btn-delete {
+  background: linear-gradient(45deg, #E63946, #F77F00);
+  border: none;
+  color: white;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-delete:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(230, 57, 70, 0.3);
+  color: white;
+}
+
+footer {
+  background: rgba(47, 79, 79, 0.95) !important;
+  backdrop-filter: blur(20px);
+  margin-top: 3rem;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stats-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 1rem;
+  transform: translateY(100%);
+  transition: all 0.3s ease;
+}
+
+.villa-card:hover .stats-overlay {
+  transform: translateY(0);
+}
+
+.empty-state {
+  text-align: center;
+  color: white;
+  padding: 3rem;
+}
+
+.empty-state i {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
+  
+  .action-buttons {
+    text-align: center;
+  }
+  
+  .action-buttons .btn-gradient-primary,
+  .action-buttons .btn-gradient-secondary {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}

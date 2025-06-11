@@ -1,0 +1,121 @@
+body {
+    background: linear-gradient(135deg, #20B2AA, #B8E6B8);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    padding: 20px 0;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #20B2AA, #FF6347);
+    color: white;
+    border-radius: 15px 15px 0 0 !important;
+    padding: 25px;
+    text-align: center;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+.price-box {
+    background: linear-gradient(135deg, #FF6B35, #F7931E);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.price-box h4 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.payment-box {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #E8F5E8;
+}
+
+.info-box {
+    background: #E8F5E8;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    border-left: 4px solid #20B2AA;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.info-row:last-child {
+    margin-bottom: 0;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #2F4F4F;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    border: 2px solid #E8F5E8;
+    border-radius: 8px;
+    padding: 12px;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #20B2AA;
+    box-shadow: 0 0 0 0.2rem rgba(32, 178, 170, 0.25);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #FF6B35, #F7931E);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #F7931E, #FF6B35);
+}
+
+.footer {
+    background: #2F4F4F;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    .card-body {
+        padding: 20px;
+    }
+}

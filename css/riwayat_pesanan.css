@@ -1,0 +1,26 @@
+.status-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.table th {
+    background-color: #E8F5E8;
+    font-weight: 600;
+    border-bottom: 2px solid #B8E6B8;
+    color: #2F4F4F;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #20B2AA 0%, #FF6347 100%);
+    color: white;
+    border-bottom: none;
+}

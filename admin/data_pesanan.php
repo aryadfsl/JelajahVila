@@ -232,11 +232,13 @@ $result = $stmt->get_result();
                 <!-- Isi lewat JS -->
             </div>
             <div class="modal-footer">
-                <form id="deleteForm" method="POST" action="hapus_pemesanan.php">
-                    <input type="hidden" name="id_pemesanan" id="delete_id_pemesanan" value="">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-danger">Hapus</button>
-                </form>
+            <form id="deleteForm" method="POST" action="hapus_pemesanan.php">
+            <input type="hidden" name="id_pemesanan" id="delete_id_pemesanan" value="">
+            <input type="hidden" name="from" value="admin"> <!-- Tambahkan ini -->
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-danger">Hapus</button>
+        </form>
+
             </div>
         </div>
     </div>

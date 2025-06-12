@@ -134,8 +134,6 @@ if (isset($_POST['submit'])) {
     <div class="form-group">
       <label>Kategori</label>
       <select name="kategori" class="form-control" required>
-        <option value="Rekomendasi" <?= $vila['kategori'] == 'Rekomendasi' ? 'selected' : '' ?>>Rekomendasi</option>
-        <option value="Promo" <?= $vila['kategori'] == 'Promo' ? 'selected' : '' ?>>Promo</option>
         <option value="Pantai" <?= $vila['kategori'] == 'Pantai' ? 'selected' : '' ?>>Pantai</option>
         <option value="Pegunungan" <?= $vila['kategori'] == 'Pegunungan' ? 'selected' : '' ?>>Pegunungan</option>
         <option value="Tengah Kota" <?= $vila['kategori'] == 'Tengah Kota' ? 'selected' : '' ?>>Tengah Kota</option>
@@ -264,14 +262,14 @@ $(document).ready(function() {
   </div>
   `);
 
-  // Tombol hapus foto per item
   $('.btn-delete-foto').click(function(e) {
-    e.preventDefault();
-    const fotoId = $(this).data('id');
-    const vilaId = $(this).data('vila');
-    $('#btn-confirm-delete').attr('href', 'hapus.php?type=foto&id=' + fotoId);
-    $('#confirmDeleteModal').modal('show');
-  });
+  e.preventDefault();
+  const fotoId = $(this).data('id');
+  const vilaId = $(this).data('vila'); // sudah ambil vila_id
+  $('#btn-confirm-delete').attr('href', 'hapus.php?type=foto&id=' + fotoId + '&vila_id=' + vilaId);
+  $('#confirmDeleteModal').modal('show');
+});
+
 
   // Tombol hapus semua foto
   $('#btn-delete-all').click(function(e) {

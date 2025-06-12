@@ -78,22 +78,41 @@ if ($update->execute()) {
         if ($aksi === 'konfirmasi') {
             $mail->Subject = 'Pemesanan Dikonfirmasi - JelajahVilla';
             $mail->Body = "
-                <p>Halo <strong>{$data['nama_pemesan']}</strong>,</p>
-                <p>Pemesanan Anda untuk vila <strong>{$data['nama_vila']}</strong> telah <span style='color:green;'>dikonfirmasi</span>.</p>
-                <p>Silakan lanjutkan proses selanjutnya sesuai petunjuk pembayaran.</p>
-                <p>Terima kasih telah menggunakan JelajahVilla.</p>
+                <div style='font-family: Arial, sans-serif; max-width: 600px; margin: auto; background:#f9f9f9; padding: 20px; border-radius: 8px; border:1px solid #ddd;'>
+                    <h2 style='color: #26C6DA; text-align: center;'>JelajahVilla</h2>
+                    <p>Halo <strong>{$data['nama_pemesan']}</strong>,</p>
+                    <p>Pemesanan Anda untuk vila <strong>{$data['nama_vila']}</strong> telah 
+                        <span style='color: green; font-weight: bold;'>dikonfirmasi</span>.</p>
+                    <div style='background: #fff; padding: 15px; border-radius: 6px; border: 1px solid #ccc; margin: 20px 0;'>
+                        <p><strong>Langkah selanjutnya:</strong></p>
+                        <ol style='padding-left: 20px;'>
+                            <li>Periksa instruksi pembayaran pada halaman riwayat pemesanan Anda.</li>
+                            <li>Lakukan pembayaran sesuai metode dan nominal yang tertera.</li>
+                            <li>Unggah bukti pembayaran agar proses verifikasi dapat dilanjutkan.</li>
+                        </ol>
+                    </div>
+                    <p>Jika ada pertanyaan, jangan ragu untuk menghubungi kami.</p>
+                    <p>Terima kasih telah menggunakan <strong>JelajahVilla</strong>.</p>
+                    <hr style='margin-top: 30px; border-color: #eee;'>
+                    <p style='font-size: 12px; color: #888; text-align: center;'>Email ini dikirim otomatis oleh sistem JelajahVilla. Mohon tidak membalas email ini.</p>
+                </div>
             ";
         } else {
             $mail->Subject = 'Pemesanan Ditolak - JelajahVilla';
             $mail->Body = "
-                <p>Halo <strong>{$data['nama_pemesan']}</strong>,</p>
-                <p>Mohon maaf, pemesanan Anda untuk vila <strong>{$data['nama_vila']}</strong> telah <span style='color:red;'>ditolak</span>.</p>
-                <p>Anda dapat mencoba memesan vila lain atau menghubungi admin untuk informasi lebih lanjut.</p>
-                <p>Terima kasih telah menggunakan JelajahVilla.</p>
+                <div style='font-family: Arial, sans-serif; max-width: 600px; margin: auto; background:#f9f9f9; padding: 20px; border-radius: 8px; border:1px solid #ddd;'>
+                    <h2 style='color: #FF6E40; text-align: center;'>JelajahVilla</h2>
+                    <p>Halo <strong>{$data['nama_pemesan']}</strong>,</p>
+                    <p>Mohon maaf, pemesanan Anda untuk vila <strong>{$data['nama_vila']}</strong> telah 
+                        <span style='color: red; font-weight: bold;'>ditolak</span>.</p>
+                    <p>Anda dapat mencoba memesan vila lain atau menghubungi admin untuk informasi lebih lanjut.</p>
+                    <p>Terima kasih telah menggunakan <strong>JelajahVilla</strong>.</p>
+                    <hr style='margin-top: 30px; border-color: #eee;'>
+                    <p style='font-size: 12px; color: #888; text-align: center;'>Email ini dikirim otomatis oleh sistem JelajahVilla. Mohon tidak membalas email ini.</p>
+                </div>
             ";
         }
-
-        $mail->send();
+        
     } catch (Exception $e) {
         // Email gagal dikirim, tapi tidak blok proses utama
         error_log("Email gagal: " . $mail->ErrorInfo);

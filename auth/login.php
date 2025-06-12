@@ -138,21 +138,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     <script src="../js/login.js"></script>
-
-    <script>
-    document.getElementById("username").addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault(); // Cegah submit form
-            document.getElementById("password").focus(); // Pindah fokus ke password
-        }
-    });
-
-    document.getElementById("password").addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            document.getElementById("form-login").submit(); // Submit form
-        }
-    });
-    </script>
-
 </body>
 </html>

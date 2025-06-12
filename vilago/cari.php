@@ -16,7 +16,7 @@ if (!empty($lokasi)) {
 }
 
 if ($harga > 0) {
-    $sql .= " AND v.harga = $harga";
+    $sql .= " AND v.harga <= $harga";
 }
 
 $sql .= " ORDER BY v.id DESC";

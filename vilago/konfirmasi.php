@@ -86,42 +86,97 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $mail->setFrom('emailkamu@gmail.com', 'JelajahVilla');
 
-        // Email ke pemilik vila (tanpa nomor VA)
         $mail->clearAddresses();
-        $mail->addAddress($email_pemilik, 'Pemilik Vila');
-        $mail->isHTML(true);
-        $mail->Subject = "Pemesanan Baru untuk Vila $nama_vila";
-        $mail->Body = "
-            <h3>Anda mendapatkan pemesanan baru!</h3>
-            <p><b>Nama Pemesan:</b> $nama</p>
-            <p><b>Email Pemesan:</b> $email</p>
-            <p><b>Telepon Pemesan:</b> $telepon</p>
-            <p><b>Check-in:</b> $checkin</p>
-            <p><b>Check-out:</b> $checkout</p>
-            <p><b>Jumlah Orang:</b> $tamu</p>
-            <p><b>Harga Total:</b> Rp " . number_format($harga, 0, ',', '.') . "</p>
-            <p><b>Metode Pembayaran:</b> $metode</p>
-        ";
-        $mail->send();
+$mail->addAddress($email_pemilik, 'Pemilik Vila');
+$mail->Subject = "Pemesanan Baru untuk Vila $nama_vila";
+$mail->isHTML(true);
+$mail->Body = '
+  <div style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 30px;">
+    <div style="max-width: 600px; margin: auto; background: #ffffff; padding: 20px; border-radius: 8px;">
+      <h2 style="color: #FF7043;">Ada pemesanan baru untuk vila Anda!</h2>
+      <p style="font-size: 15px; color: #333;">Detail pemesanan:</p>
 
-       
+      <table style="width: 100%; table-layout: fixed; font-size: 14px; border-collapse: collapse;">
+        <tr>
+          <td style="padding: 8px 4px; width: 35%;"><strong>Nama Pemesan:</strong></td>
+          <td style="padding: 8px 4px; width: 65%;">' . htmlspecialchars($nama) . '</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 4px;"><strong>Email:</strong></td>
+          <td style="padding: 8px 4px; overflow-wrap: break-word; word-break: break-word;">' . htmlspecialchars($email) . '</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 4px;"><strong>Telepon:</strong></td>
+          <td style="padding: 8px 4px;">' . htmlspecialchars($telepon) . '</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 4px;"><strong>Check-in:</strong></td>
+          <td style="padding: 8px 4px;">' . $checkin . '</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 4px;"><strong>Check-out:</strong></td>
+          <td style="padding: 8px 4px;">' . $checkout . '</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 4px;"><strong>Jumlah Orang:</strong></td>
+          <td style="padding: 8px 4px;">' . $tamu . '</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 4px;"><strong>Pembayaran:</strong></td>
+          <td style="padding: 8px 4px;">' . htmlspecialchars($metode) . '</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 4px;"><strong>Total Harga:</strong></td>
+          <td style="padding: 8px 4px;"><strong>Rp ' . number_format($harga, 0, ',', '.') . '</strong></td>
+        </tr>
+      </table>
 
-        // Email ke pemesan
+      <p style="margin-top: 20px; font-size: 14px; color: #333;">
+        Silakan login ke dashboard untuk konfirmasi atau tindak lanjut.
+      </p>
+
+      <p style="font-size: 12px; color: #999; margin-top: 30px;">
+        Email ini dikirim otomatis oleh sistem JelajahVilla.
+      </p>
+    </div>
+  </div>';
+$mail->send();
+
+        
+
         $mail->clearAddresses();
         $mail->addAddress($email, $nama);
         $mail->Subject = "Konfirmasi Pemesanan Anda di Vila $nama_vila";
-        $mail->Body = "
-            <h3>Terima kasih sudah memesan vila kami!</h3>
-            <p>Berikut detail pemesanan Anda:</p>
-            <p><b>Nama Vila:</b> $nama_vila</p>
-            <p><b>Check-in:</b> $checkin</p>
-            <p><b>Check-out:</b> $checkout</p>
-            <p><b>Jumlah Orang:</b> $tamu</p>
-            <p><b>Harga Total:</b> Rp " . number_format($harga, 0, ',', '.') . "</p>
-            <p>Mohon tunggu konfirmasi dari pemilik vila terima kasih</p>
-            $info_pembayaran
-        ";
+        $mail->isHTML(true);
+        $mail->Body = '
+          <div style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 30px;">
+            <div style="max-width: 600px; margin: auto; background: #ffffff; padding: 20px; border-radius: 8px;">
+              <h2 style="color: #00BFA6;">Terima kasih telah memesan di JelajahVilla!</h2>
+              <p style="font-size: 15px; color: #333;">Halo <strong>' . htmlspecialchars($nama) . '</strong>, berikut ini adalah detail pemesanan Anda:</p>
+        
+              <table style="width: 100%; font-size: 14px; margin-top: 20px; border-collapse: collapse;">
+                <tr><td style="padding: 8px 4px;"><strong>Nama Vila:</strong></td><td style="padding: 8px 4px;">' . htmlspecialchars($nama_vila) . '</td></tr>
+                <tr><td style="padding: 8px 4px;"><strong>Check-in:</strong></td><td style="padding: 8px 4px;">' . $checkin . '</td></tr>
+                <tr><td style="padding: 8px 4px;"><strong>Check-out:</strong></td><td style="padding: 8px 4px;">' . $checkout . '</td></tr>
+                <tr><td style="padding: 8px 4px;"><strong>Jumlah Orang:</strong></td><td style="padding: 8px 4px;">' . $tamu . '</td></tr>
+                <tr><td style="padding: 8px 4px;"><strong>Metode Pembayaran:</strong></td><td style="padding: 8px 4px;">' . htmlspecialchars($metode) . '</td></tr>
+                <tr><td style="padding: 8px 4px;"><strong>Email:</strong></td><td style="padding: 8px 4px; word-wrap: break-word; overflow-wrap: break-word;">' . htmlspecialchars($email) . '</td></tr>
+                <tr><td style="padding: 8px 4px;"><strong>Telepon:</strong></td><td style="padding: 8px 4px;">' . htmlspecialchars($telepon) . '</td></tr>
+                <tr><td style="padding: 8px 4px;"><strong>Total Harga:</strong></td><td style="padding: 8px 4px;"><strong>Rp ' . number_format($harga, 0, ',', '.') . '</strong></td></tr>
+              </table>
+        
+              <p style="margin-top: 20px; font-size: 14px; color: #333;">
+                Mohon tunggu konfirmasi dari pemilik vila. Anda akan menerima informasi lebih lanjut setelah pemesanan dikonfirmasi.
+              </p>
+        
+        
+              <p style="font-size: 12px; color: #999; margin-top: 30px;">
+                Email ini dikirim secara otomatis oleh sistem JelajahVilla.
+              </p>
+            </div>
+          </div>';
         $mail->send();
+        
 
         // Redirect ke halaman detail dengan pesan sukses
         header("Location: ../user/riwayat_pemesan.php");

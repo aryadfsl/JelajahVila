@@ -14,9 +14,11 @@ $sql = "
     SELECT p.*, v.nama AS nama_vila
     FROM pemesanan p
     JOIN vila v ON p.id_vila = v.id
-    WHERE p.id_admin = ? OR p.id_admin IS NULL
+    WHERE (p.id_admin = ? OR p.id_admin IS NULL)
+      AND p.status <> 'dihapus_user'   -- tambah ini untuk exclude yang dihapus user
     ORDER BY p.id DESC
 ";
+
 
 $stmt = $koneksi->prepare($sql);
 if (!$stmt) {
@@ -138,11 +140,12 @@ $result = $stmt->get_result();
                                     <?= htmlspecialchars($row['metode_pembayaran']) ?>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-danger btn-sm" 
-                                            onclick="confirmDelete(<?= $row['id'] ?>, '<?= htmlspecialchars($row['nama_vila']) ?>')"
-                                            title="Hapus Pemesanan">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                <button class="btn btn-danger btn-sm" 
+                                onclick="confirmDelete(<?= $row['id'] ?>, '<?= htmlspecialchars($row['nama_vila']) ?>')"
+                                title="Hapus Pemesanan">
+                                <i class="fas fa-trash"></i>
+                            </button>
+
                                 </td>
                             </tr>
                         <?php endwhile; ?>
@@ -198,21 +201,24 @@ $result = $stmt->get_result();
     </div>
 </div>
 
+<!-- Form POST tersembunyi untuk submit hapus -->
+<form id="deleteForm" method="POST" action="../admin/hapus_pemesanan.php" style="display:none;">
+    <input type="hidden" name="id_pemesanan" id="deleteIdInput" value="">
+    <input type="hidden" name="from" value="user">
+</form>
+
+<!-- Script untuk mengatur modal dan submit form -->
 <script>
-let deleteId = null;
-
-function confirmDelete(id, villaName) {
-    deleteId = id;
-    document.getElementById('deleteVillaName').textContent = villaName;
-    new bootstrap.Modal(document.getElementById('deleteModal')).show();
-}
-
-document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
-    if (deleteId) {
-        // Redirect ke script hapus dengan ID
-        window.location.href = '../admin/hapus_pemesanan.php?id=' + deleteId;
+    function confirmDelete(id, villaName) {
+        document.getElementById('deleteVillaName').textContent = villaName;
+        document.getElementById('deleteIdInput').value = id;
+        new bootstrap.Modal(document.getElementById('deleteModal')).show();
     }
-});
+
+    document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
+        document.getElementById('deleteForm').submit();
+    });
 </script>
+
 </body>
 </html>

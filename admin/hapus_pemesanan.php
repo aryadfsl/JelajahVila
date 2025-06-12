@@ -1,27 +1,45 @@
 <?php
-include '../DB/koneksi.php'; // Sesuaikan jika koneksi.php di luar folder /admin/
+include '../DB/koneksi.php';
+session_start();
 
-if (isset($_GET['id'])) {
-    $id = intval($_GET['id']);
+if (isset($_POST['id_pemesanan']) && isset($_POST['from'])) {
+    $id = intval($_POST['id_pemesanan']);
+    $asal = $_POST['from'];
 
-    // Cek apakah data dengan ID tersebut ada
+    // Cek apakah data ada
     $cek = mysqli_query($koneksi, "SELECT * FROM pemesanan WHERE id = $id");
 
     if (mysqli_num_rows($cek) > 0) {
-        // Hapus data dari database
-        $hapus = mysqli_query($koneksi, "DELETE FROM pemesanan WHERE id = $id");
+        if ($asal === 'user') {
+            // Soft delete: hanya ubah status jadi 'dihapus_user'
+            $update = mysqli_query($koneksi, "UPDATE pemesanan SET status = 'dihapus_user' WHERE id = $id");
+            if ($update) {
+                $_SESSION['success_message'] = "Data berhasil dihapus.";
+                header("Location: ../user/riwayat_pemesan.php?msg=sukses");
+                exit;
+            } else {
+                echo "❌ Gagal menyembunyikan data.";
+            }
 
-        if ($hapus) {
-            // Redirect ke halaman data dengan pesan sukses
-            header("Location: ../user/riwayat_pemesan.php?msg=sukses");
-            exit;
+        } elseif ($asal === 'admin') {
+            // Hard delete: hapus permanen
+            $hapus = mysqli_query($koneksi, "DELETE FROM pemesanan WHERE id = $id");
+            if ($hapus) {
+                $_SESSION['success_message'] = "Data berhasil dihapus.";
+                header("Location: ../admin/data_pesanan.php?msg=sukses");
+                exit;
+            } else {
+                echo "❌ Gagal menghapus data.";
+            }
+
         } else {
-            echo "❌ Gagal menghapus data. Silakan coba lagi.";
+            echo "❌ Asal halaman tidak valid.";
         }
+
     } else {
-        echo "⚠️ Data dengan ID tersebut tidak ditemukan.";
+        echo "⚠️ Data tidak ditemukan.";
     }
 } else {
-    echo "⚠️ ID tidak valid atau tidak dikirimkan.";
+    echo "⚠️ ID atau asal halaman tidak valid.";
 }
 ?>

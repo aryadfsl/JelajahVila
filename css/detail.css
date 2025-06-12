@@ -574,3 +574,20 @@ img {
 .booking-card:hover::before {
   opacity: 0.1;
 }
+.btn-gradient {
+  color: white !important;
+  background: linear-gradient(90deg, #00BFA6 0%, #FF7043 100%);
+  border: none;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  border-radius: 0.375rem;
+  transition: background 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(90deg, #26C6DA 0%, #FF6E40 100%);
+  color: white !important;
+}

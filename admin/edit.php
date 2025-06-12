@@ -264,14 +264,14 @@ $(document).ready(function() {
   </div>
   `);
 
-  // Tombol hapus foto per item
   $('.btn-delete-foto').click(function(e) {
-    e.preventDefault();
-    const fotoId = $(this).data('id');
-    const vilaId = $(this).data('vila');
-    $('#btn-confirm-delete').attr('href', 'hapus.php?type=foto&id=' + fotoId);
-    $('#confirmDeleteModal').modal('show');
-  });
+  e.preventDefault();
+  const fotoId = $(this).data('id');
+  const vilaId = $(this).data('vila'); // sudah ambil vila_id
+  $('#btn-confirm-delete').attr('href', 'hapus.php?type=foto&id=' + fotoId + '&vila_id=' + vilaId);
+  $('#confirmDeleteModal').modal('show');
+});
+
 
   // Tombol hapus semua foto
   $('#btn-delete-all').click(function(e) {

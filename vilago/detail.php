@@ -105,9 +105,14 @@ $tanggal_dipesan = array_unique($tanggal_dipesan);
   </nav>
 
   <div class="hero-section" id="info">
-    <div class="container">
-      <h1 class="villa-title text-center"><?= htmlspecialchars($vila['nama']) ?></h1>
-
+  <div class="container">
+    <!-- Tombol Kembali ke Index -->
+    <div class="mb-3 text-start">
+      <a href="index.php" class="btn btn-gradient">
+        <i class="fas fa-arrow-left me-2"></i> Kembali ke awal
+      </a>
+    </div>
+      <h1 class="villa-title text-center"><?= htmlspecialchars($vila['nama']) ?></h1
       <?php if (count($fotos) > 0): ?>
   <div class="carousel-container">
     <div id="carouselFotoVila" class="carousel slide" data-ride="carousel">
@@ -396,16 +401,8 @@ $tanggal_dipesan = array_unique($tanggal_dipesan);
     </div>
   </div>
 
-  <!-- Tombol Kembali ke Index -->
-  <div class="mt-4 text-center">
-            <a href="index.php" class="btn btn-primary">
-                <i class="fas fa-arrow-left me-2"></i> Kembali ke Index
-            </a>
-        </div>
 
-      </div> <!-- akhir col-lg-10 -->
-    </div> <!-- akhir row -->
-  </div> <!-- akhir container -->
+
 
   <!-- Footer -->
   <footer>

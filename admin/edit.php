@@ -134,8 +134,6 @@ if (isset($_POST['submit'])) {
     <div class="form-group">
       <label>Kategori</label>
       <select name="kategori" class="form-control" required>
-        <option value="Rekomendasi" <?= $vila['kategori'] == 'Rekomendasi' ? 'selected' : '' ?>>Rekomendasi</option>
-        <option value="Promo" <?= $vila['kategori'] == 'Promo' ? 'selected' : '' ?>>Promo</option>
         <option value="Pantai" <?= $vila['kategori'] == 'Pantai' ? 'selected' : '' ?>>Pantai</option>
         <option value="Pegunungan" <?= $vila['kategori'] == 'Pegunungan' ? 'selected' : '' ?>>Pegunungan</option>
         <option value="Tengah Kota" <?= $vila['kategori'] == 'Tengah Kota' ? 'selected' : '' ?>>Tengah Kota</option>

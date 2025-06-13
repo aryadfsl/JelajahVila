@@ -37,9 +37,10 @@ $query = mysqli_query($koneksi, $sql);
 
     <!-- Tombol Kembali ke Beranda -->
     <div class="mb-3 text-start">
-      <a href="index.php" class="btn btn-primary">
-        <i class="fas fa-arrow-left me-2"></i> Kembali ke Beranda
-      </a>
+    <a href="index.php" class="btn btn-gradient">
+  <i class="fas fa-arrow-left me-2"></i> Kembali ke Beranda
+</a>
+
     </div>
 
     <h3 class="mb-4">Hasil Pencarian Vila</h3>

@@ -1,14 +1,41 @@
 <?php
 include '../DB/koneksi.php';
 session_start();
+// Setup Pagination
+$limit = 6; // Jumlah vila per halaman
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$start = ($page - 1) * $limit;
 
-// Query ambil data vila dan rata-rata rating, tanpa join diskon
-$sql = "SELECT v.*, 
-               (SELECT ROUND(AVG(rating), 1) FROM komentar WHERE komentar.id_vila = v.id) AS rata_rating
-        FROM vila v
-        ORDER BY v.id DESC";
+// Query untuk menampilkan vila dengan rata-rata rating
+$sql = "
+    SELECT v.*, 
+           (SELECT ROUND(AVG(rating), 1) 
+            FROM komentar 
+            WHERE komentar.id_vila = v.id) AS rata_rating
+    FROM vila v
+    ORDER BY v.id DESC
+    LIMIT $start, $limit
+";
 
 $result = mysqli_query($koneksi, $sql);
+
+// Query untuk menghitung total vila (untuk pagination)
+$totalQuery = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM vila");
+$totalRow = mysqli_fetch_assoc($totalQuery);
+$totalVila = $totalRow['total'];
+$totalPages = ceil($totalVila / $limit);
+
+
+// Query hitung jumlah pemesanan tiap vila
+$pesananQuery = mysqli_query($koneksi, "
+    SELECT id_vila, COUNT(*) AS total_pemesanan 
+    FROM pemesanan 
+    GROUP BY id_vila
+");
+$pesananCounts = [];
+while ($rowP = mysqli_fetch_assoc($pesananQuery)) {
+    $pesananCounts[$rowP['id_vila']] = $rowP['total_pemesanan'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -152,17 +179,39 @@ $result = mysqli_query($koneksi, $sql);
       Rekomendasi Vila Untukmu
     </h3>
     <div class="row">
+    <?php if ($totalPages > 1): ?>
+  <nav>
+    <ul class="pagination">
+      <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+        <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
+          <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+        </li>
+      <?php endfor; ?>
+    </ul>
+  </nav>
+<?php endif; ?>
+
       <?php while ($row = mysqli_fetch_assoc($result)) : ?>
         <?php
           $idVila = $row['id'];
           $fotoQuery = mysqli_query($koneksi, "SELECT nama_file FROM foto_vila WHERE id_vila = $idVila LIMIT 1");
           $foto = mysqli_fetch_assoc($fotoQuery);
           $gambar = $foto ? $foto['nama_file'] : 'default.jpg';
+
+          $totalPemesanan = isset($pesananCounts[$idVila]) ? $pesananCounts[$idVila] : 0;
         ?>
         <div class="col-md-4 mb-4">
           <div class="card h-100">
             <div class="position-relative">
               <img src="../img/<?= htmlspecialchars($gambar) ?>" class="card-img-top" alt="<?= htmlspecialchars($row['nama']) ?>" />
+              
+              <?php if ($totalPemesanan > 0): ?>
+  <div class="position-absolute" style="top:10px; left:10px; z-index:10; color: gold;" title="Vila Populer">
+    <i class="fas fa-crown fa-2x"></i>
+  </div>
+<?php endif; ?>
+
+
               <?php if ($row['rata_rating'] !== null): ?>
                 <div class="rating-badge">
                   <i class="fas fa-star mr-1"></i><?= $row['rata_rating'] ?>
@@ -218,9 +267,36 @@ $result = mysqli_query($koneksi, $sql);
           </div>
         </div>
       <?php endwhile; ?>
-    </div>
+    </div>..
   </div>
 </section>
+
+<nav aria-label="Navigasi halaman vila">
+  <ul class="pagination justify-content-center mt-4">
+    <?php if ($page > 1): ?>
+      <li class="page-item">
+        <a class="page-link" href="?page=<?= $page - 1 ?>" aria-label="Sebelumnya">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+    <?php endif; ?>
+
+    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+      <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+        <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+      </li>
+    <?php endfor; ?>
+
+    <?php if ($page < $totalPages): ?>
+      <li class="page-item">
+        <a class="page-link" href="?page=<?= $page + 1 ?>" aria-label="Berikutnya">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    <?php endif; ?>
+  </ul>
+</nav>
+
 
 <section class="cta-section">
   <div class="container text-center">

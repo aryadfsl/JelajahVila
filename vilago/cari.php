@@ -3,7 +3,6 @@ include '../DB/koneksi.php';
 
 $lokasi = isset($_GET['lokasi']) ? mysqli_real_escape_string($koneksi, $_GET['lokasi']) : '';
 $hargaInput = isset($_GET['harga']) ? $_GET['harga'] : '';
-
 $harga = (int) str_replace(['.', ','], '', $hargaInput);
 
 $sql = "SELECT v.*, 
@@ -30,11 +29,21 @@ $query = mysqli_query($koneksi, $sql);
   <meta charset="UTF-8" />
   <title>Hasil Pencarian Vila</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="../css/cari.css">
+  <link rel="stylesheet" href="../css/cari.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
 <body>
   <div class="container py-5">
+
+    <!-- Tombol Kembali ke Beranda -->
+    <div class="mb-3 text-start">
+      <a href="index.php" class="btn btn-primary">
+        <i class="fas fa-arrow-left me-2"></i> Kembali ke Beranda
+      </a>
+    </div>
+
     <h3 class="mb-4">Hasil Pencarian Vila</h3>
+
     <div class="row">
       <?php if(mysqli_num_rows($query) > 0): ?>
         <?php while ($row = mysqli_fetch_assoc($query)) : ?>

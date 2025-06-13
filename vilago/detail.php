@@ -1,5 +1,6 @@
 <?php
 include '../DB/koneksi.php';
+$referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
 
 if (isset($_GET['pesan']) && $_GET['pesan'] === 'success') {
   echo "<script>alert('Pemesanan berhasil! Terima kasih telah memesan.');</script>";
@@ -108,10 +109,10 @@ $tanggal_dipesan = array_unique($tanggal_dipesan);
   <div class="container">
     <!-- Tombol Kembali ke Index -->
     <div class="mb-3 text-start">
-      <a href="index.php" class="btn btn-gradient">
-        <i class="fas fa-arrow-left me-2"></i> Kembali ke awal
-      </a>
-    </div>
+  <a href="<?= htmlspecialchars($referrer) ?>" class="btn btn-gradient">
+    <i class="fas fa-arrow-left me-2"></i> Kembali 
+  </a>
+</div>
       <h1 class="villa-title text-center"><?= htmlspecialchars($vila['nama']) ?></h1
       <?php if (count($fotos) > 0): ?>
   <div class="carousel-container">

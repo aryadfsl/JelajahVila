@@ -433,7 +433,9 @@ body {
     width: 100%;
     margin-top: 0.25rem;
     font-size: 0.875rem;
+
     color: #48CAE4;
+    color: #dc3545;
 }
 
 .valid-feedback {

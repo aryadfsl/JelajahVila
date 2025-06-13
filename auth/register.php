@@ -111,21 +111,21 @@ if (isset($_POST['register'])) {
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Register - JelajahVilla</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../css/register.css" />
 </head>
 <body>
 <div class="register-container">
@@ -184,16 +184,18 @@ if (isset($_POST['register'])) {
                             <i class="fas fa-user"></i>
                             Username
                         </label>
-                        <input type="text"
-                               id="username"
-                               name="username"
-                               class="form-control custom-input"
-                               placeholder="Masukkan username Anda"
-                               required
-                               autofocus
-                               pattern="[a-zA-Z0-9_]+"
-                               minlength="3"
-                               value="<?= isset($_POST['username']) ? htmlspecialchars($_POST['username']) : '' ?>">
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            class="form-control custom-input"
+                            placeholder="Masukkan username Anda"
+                            required
+                            autofocus
+                            pattern="[a-zA-Z0-9_]+"
+                            minlength="3"
+                            value="<?= isset($_POST['username']) ? htmlspecialchars($_POST['username']) : '' ?>"
+                        />
                         <small class="form-text text-muted">Minimal 3 karakter, hanya huruf, angka, dan underscore</small>
                     </div>
 
@@ -203,17 +205,21 @@ if (isset($_POST['register'])) {
                             Password
                         </label>
                         <div class="password-container">
-                            <input type="password"
-                                   id="password"
-                                   name="password"
-                                   class="form-control custom-input"
-                                   placeholder="Masukkan password Anda"
-                                   required
-                                   minlength="6">
-                            <button type="button"
-                                    class="password-toggle"
-                                    onclick="togglePassword('password', 'toggleIcon1')"
-                                    aria-label="Tampilkan/sembunyikan password">
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="form-control custom-input"
+                                placeholder="Masukkan password Anda"
+                                required
+                                minlength="6"
+                            />
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="togglePassword('password', 'toggleIcon1')"
+                                aria-label="Tampilkan/sembunyikan password"
+                            >
                                 <i id="toggleIcon1" class="fas fa-eye"></i>
                             </button>
                         </div>
@@ -227,7 +233,8 @@ if (isset($_POST['register'])) {
                 </form>
 
                 <div class="form-footer">
-                    <p>Sudah punya akun?
+                    <p>
+                        Sudah punya akun?
                         <a href="login.php" class="login-link">Login di sini</a>
                     </p>
                 </div>
@@ -239,21 +246,20 @@ if (isset($_POST['register'])) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 <script src="../js/register.js"></script>
 
-    <script>
-    document.getElementById("username").addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault(); // Cegah submit form
-            document.getElementById("password").focus(); // Pindah fokus ke password
-        }
-    });
+<script>
+document.getElementById("username").addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("password").focus();
+    }
+});
 
-    document.getElementById("password").addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            document.getElementById("form-login").submit(); // Submit form
-        }
-    });
-    </script>
-    <script>
+document.getElementById("password").addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        document.getElementById("form-register").submit();
+    }
+});
+
 function togglePassword(passwordId, iconId) {
     const passwordInput = document.getElementById(passwordId);
     const toggleIcon = document.getElementById(iconId);
@@ -269,7 +275,5 @@ function togglePassword(passwordId, iconId) {
     }
 }
 </script>
-
-
 </body>
 </html>

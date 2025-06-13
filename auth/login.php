@@ -116,7 +116,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         aria-label="Tampilkan/sembunyikan password">
                                     <i id="toggleIcon" class="fas fa-eye"></i>
                                 </button>
-
                             </div>
                         </div>
 
@@ -172,5 +171,7 @@ function togglePassword(passwordId, iconId) {
 </script>
 
 
+=======
+>>>>>>> 40b926759f21a996741b8fae764a09c3ae54cbb2
 </body>
 </html>

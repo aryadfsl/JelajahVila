@@ -25,7 +25,8 @@ $result = mysqli_query($koneksi, $sql);
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/index.css">
 </head>
-<body>
+<body id="top">
+
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
   <div class="container">
@@ -233,12 +234,16 @@ $result = mysqli_query($koneksi, $sql);
       Tunggu apalagi? Yuk, sewakan penginapanmu sekarang juga dan jadilah bagian dari jaringan partner kami!
     </p>
     <div class="mt-4">
-      <a href="#" class="btn btn-light btn-lg mr-3">
-        <i class="fas fa-rocket mr-2"></i>Mulai Sekarang
-      </a>
-      <a href="#" class="btn btn-outline-light btn-lg">
-        <i class="fas fa-info-circle mr-2"></i>Pelajari Lebih Lanjut
-      </a>
+    <?php if (isset($_SESSION['user']) || isset($_SESSION['admin'])): ?>
+  <a href="#top" class="btn btn-light btn-lg mr-3">
+    <i class="fas fa-rocket mr-2"></i>Mulai Sekarang
+  </a>
+<?php else: ?>
+  <a href="../auth/login.php" onclick="alert('Silakan login terlebih dahulu untuk menyewakan penginapan.')" class="btn btn-light btn-lg mr-3">
+    <i class="fas fa-rocket mr-2"></i>Mulai Sekarang
+  </a>
+<?php endif; ?>
+
     </div>
   </div>
 </section>

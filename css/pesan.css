@@ -119,3 +119,20 @@ body {
         padding: 20px;
     }
 }
+
+.btn-kembali {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 8px;
+  background: linear-gradient(to right, #14c2a3, #f1663b);
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: 'Segoe UI', sans-serif;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-kembali:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}

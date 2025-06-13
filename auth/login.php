@@ -110,12 +110,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                        class="form-control custom-input"
                                        placeholder="Masukkan password Anda"
                                        required>
-                                <button type="button" 
+                                       <button type="button" 
                                         class="password-toggle"
-                                        onclick="togglePassword()"
+                                        onclick="togglePassword('password', 'toggleIcon')"
                                         aria-label="Tampilkan/sembunyikan password">
                                     <i id="toggleIcon" class="fas fa-eye"></i>
                                 </button>
+
                             </div>
                         </div>
 
@@ -153,6 +154,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     });
     </script>
+    <script>
+function togglePassword(passwordId, iconId) {
+    const passwordInput = document.getElementById(passwordId);
+    const toggleIcon = document.getElementById(iconId);
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleIcon.classList.remove("fa-eye");
+        toggleIcon.classList.add("fa-eye-slash");
+    } else {
+        passwordInput.type = "password";
+        toggleIcon.classList.remove("fa-eye-slash");
+        toggleIcon.classList.add("fa-eye");
+    }
+}
+</script>
+
 
 </body>
 </html>

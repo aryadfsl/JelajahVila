@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                        class="form-control custom-input"
                                        placeholder="Masukkan password Anda"
                                        required>
-                                       <button type="button" 
+                                <button type="button" 
                                         class="password-toggle"
                                         onclick="togglePassword('password', 'toggleIcon')"
                                         aria-label="Tampilkan/sembunyikan password">
@@ -142,36 +142,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script>
     document.getElementById("username").addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
-            event.preventDefault(); // Cegah submit form
-            document.getElementById("password").focus(); // Pindah fokus ke password
+            event.preventDefault();
+            document.getElementById("password").focus();
         }
     });
 
     document.getElementById("password").addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
-            document.getElementById("form-login").submit(); // Submit form
+            document.getElementById("form-login").submit();
         }
     });
-    </script>
-    <script>
-function togglePassword(passwordId, iconId) {
-    const passwordInput = document.getElementById(passwordId);
-    const toggleIcon = document.getElementById(iconId);
 
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        toggleIcon.classList.remove("fa-eye");
-        toggleIcon.classList.add("fa-eye-slash");
-    } else {
-        passwordInput.type = "password";
-        toggleIcon.classList.remove("fa-eye-slash");
-        toggleIcon.classList.add("fa-eye");
+    function togglePassword(passwordId, iconId) {
+        const passwordInput = document.getElementById(passwordId);
+        const toggleIcon = document.getElementById(iconId);
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleIcon.classList.remove("fa-eye");
+            toggleIcon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            toggleIcon.classList.remove("fa-eye-slash");
+            toggleIcon.classList.add("fa-eye");
+        }
     }
-}
-</script>
-
-
-=======
->>>>>>> 40b926759f21a996741b8fae764a09c3ae54cbb2
+    </script>
 </body>
 </html>

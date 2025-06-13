@@ -41,18 +41,23 @@ if (isset($_POST['submit'])) {
     $maps_embed = mysqli_real_escape_string($koneksi, $_POST['maps_embed']);
     $kontak = mysqli_real_escape_string($koneksi, $_POST['kontak']);
     $email = mysqli_real_escape_string($koneksi, $_POST['email']);
-
+    $bank = mysqli_real_escape_string($koneksi, $_POST['bank']);
+    $no_rekening = mysqli_real_escape_string($koneksi, $_POST['no_rekening']);
+    
     // Update data vila
     $update = mysqli_query($koneksi, "UPDATE vila SET 
-        nama='$nama', 
-        lokasi='$lokasi', 
-        harga=$harga, 
-        deskripsi='$deskripsi', 
-        kategori='$kategori',
-        maps_embed='$maps_embed',
-        kontak='$kontak',
-        email='$email'
-        WHERE id=$id AND id_admin=$id_admin");
+    nama='$nama', 
+    lokasi='$lokasi', 
+    harga=$harga, 
+    deskripsi='$deskripsi', 
+    kategori='$kategori',
+    maps_embed='$maps_embed',
+    kontak='$kontak',
+    email='$email',
+    bank='$bank',
+    no_rekening='$no_rekening'
+    WHERE id=$id AND id_admin=$id_admin");
+
 
     if ($update) {
         // Hapus fasilitas lama
@@ -170,6 +175,16 @@ if (isset($_POST['submit'])) {
     </div>
 
     <div class="form-group">
+  <label>Bank</label>
+  <input type="text" name="bank" class="form-control" value="<?= htmlspecialchars($vila['bank']) ?>" required />
+</div>
+<div class="form-group">
+  <label>Nomor Rekening</label>
+  <input type="text" name="no_rekening" class="form-control" value="<?= htmlspecialchars($vila['no_rekening']) ?>" required />
+</div>
+
+
+    <div class="form-group">
       <label>Tambah Foto Baru</label>
       <input type="file" name="foto" class="form-control-file" accept=".jpg,.jpeg,.png,.gif" />
     </div>
@@ -282,3 +297,6 @@ $(document).ready(function() {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
+

@@ -428,3 +428,19 @@ footer {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
+.pagination .page-item.active .page-link {
+  background: linear-gradient(45deg, #20B2AA, #48CAE4);
+  border: none;
+  color: white;
+}
+
+.pagination .page-link {
+  color: #20B2AA;
+  border-radius: 5px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.pagination .page-link:hover {
+  background: #48CAE4;
+  color: white;
+}

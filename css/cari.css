@@ -138,7 +138,7 @@ h3::after {
 
 /* Button Styling */
 .btn-danger {
-  background: linear-gradient(135deg, #FF6E40, #FF7043);
+  background: linear-gradient(45deg, #20B2AA, #48CAE4);
   border: none;
   border-radius: 25px;
   padding: 10px 25px;

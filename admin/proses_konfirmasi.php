@@ -6,13 +6,13 @@ require '../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Pastikan admin sudah login
+// Cek apakah admin sudah login
 if (!isset($_SESSION['id_admin'])) {
     header('Location: login.php');
     exit;
 }
 
-// Validasi POST
+// Validasi input
 if (!isset($_POST['id_pemesanan'], $_POST['aksi']) || !is_numeric($_POST['id_pemesanan'])) {
     $_SESSION['error_message'] = "Permintaan tidak valid.";
     header('Location: data_pesanan.php');
@@ -23,7 +23,6 @@ $id_pemesanan = (int)$_POST['id_pemesanan'];
 $aksi = $_POST['aksi'];
 $id_admin = $_SESSION['id_admin'];
 
-// Cek aksi valid
 if (!in_array($aksi, ['konfirmasi', 'tolak'])) {
     $_SESSION['error_message'] = "Aksi tidak dikenal.";
     header('Location: data_pesanan.php');
@@ -59,15 +58,14 @@ $update->bind_param("si", $status_baru, $id_pemesanan);
 if ($update->execute()) {
     $_SESSION['success_message'] = "Pemesanan atas nama {$data['nama_pemesan']} berhasil {$aksi_text}.";
 
-    // Kirim email
+    // Kirim email ke pemesan
     $mail = new PHPMailer(true);
     try {
-        // Konfigurasi server SMTP
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'ahmadsopiandi989@gmail.com'; // Ganti
-        $mail->Password = 'ncyu pppk dszs rycl';         // Ganti app password Gmail
+        $mail->Username = 'ahmadsopiandi989@gmail.com'; // Ganti dengan email kamu
+        $mail->Password = 'ncyu pppk dszs rycl';         // Ganti dengan App Password Gmail
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
@@ -112,11 +110,13 @@ if ($update->execute()) {
                 </div>
             ";
         }
-        
+
+        $mail->send(); // <-- INI YANG PENTING
+
     } catch (Exception $e) {
-        // Email gagal dikirim, tapi tidak blok proses utama
-        error_log("Email gagal: " . $mail->ErrorInfo);
+        error_log("Gagal mengirim email: {$mail->ErrorInfo}");
     }
+
 } else {
     $_SESSION['error_message'] = "Gagal memperbarui status pemesanan.";
 }

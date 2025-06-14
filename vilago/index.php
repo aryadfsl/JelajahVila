@@ -205,7 +205,7 @@ while ($rowP = mysqli_fetch_assoc($pesananQuery)) {
             <div class="position-relative">
               <img src="../img/<?= htmlspecialchars($gambar) ?>" class="card-img-top" alt="<?= htmlspecialchars($row['nama']) ?>" />
               
-              <?php if ($totalPemesanan > 0): ?>
+              <?php if ($totalPemesanan > 1): ?>
   <div class="position-absolute" style="top:10px; left:10px; z-index:10; color: gold;" title="Vila Populer">
     <i class="fas fa-crown fa-2x"></i>
   </div>
